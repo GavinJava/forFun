@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lav.ssm.mapper.UserMapper">
+
+	<select id="login" parameterMap="loginParamMap" resultMap="userResultMap">
+		select user_id,user_name,user_pwd from users where user_name = #{userName} and user_pwd = #{userPwd}
+	</select>
+	<parameterMap type="java.util.Map" id="loginParamMap">
+		<parameter property="userName" javaType="string"/>
+		<parameter property="userPwd" javaType="string"/>
+	</parameterMap>
+	<resultMap type="cn.lav.ssm.pojo.User" id="userResultMap">
+		<id property="userId" column="user_id"/>
+		<result property="userName" column="user_name"/>
+		<result property="userPwd" column="user_pwd"/>
+	</resultMap>
+	
+	<insert id="addUser" parameterType="cn.lav.ssm.pojo.User" useGeneratedKeys="true" keyColumn="user_id" keyProperty="userId">
+		insert users (user_name,user_pwd,dept_id) value (#{userName},#{userPwd},#{dept.deptId})
+ 	</insert>
+ 	<!-- <parameterMap type="java.util.Map" id="addUserParamMap">
+ 		<parameter property="userName" javaType="string"/>
+ 		<parameter property="userPwd" javaType="string"/>
+ 		<parameter property="dept" javaType="deptId" resultMap="deptResultMap"/>
+ 	</parameterMap>
+ 	<resultMap type="cn.lav.ssm.pojo.Dept" id="deptResultMap">
+ 		<id property="deptId" column="dept_id"/>
+ 		<result property="deptName" column="dept_name"/>
+ 	</resultMap> -->
+ 	
+ 	<delete id="deleteUserById" parameterType="int">
+ 		delete from users where user_id = #{userId}
+ 	</delete>
+ 	
+ 	<select id="getUserById" parameterType="int" resultMap="cUserResultMap">
+ 		select user_id,user_name,user_pwd,d.dept_id,dept_name from users u left join depts d on u.dept_id = d.dept_id where user_id = #{userId}
+ 	</select>
+ 	<resultMap type="cn.lav.ssm.pojo.User" id="cUserResultMap" extends="userResultMap">
+ 		<association property="dept" javaType="cn.lav.ssm.pojo.Dept">
+ 			<id property="deptId" column="dept_id"/>
+		<result property="deptName" column="dept_name"/>
+ 		</association>
+ 	</resultMap>
+ 	
+ 	<update id="updateUser" parameterMap="updateMap">
+ 		update users set user_name = #{userName} , user_pwd = #{userPwd} , dept_id = #{deptId} where user_id = #{userId}
+ 	</update>
+ 	<parameterMap type="java.util.Map" id="updateMap">
+ 		<parameter property="userId" javaType="int"/>
+ 		<parameter property="userName" javaType="string"/>
+ 		<parameter property="userPwd" javaType="string"/>
+ 		<parameter property="deptId" javaType="int"/>
+ 	</parameterMap>
+ 	
+ 	<select id="getAllUsers" resultMap="cUserResultMap">
+ 		select user_id,user_name,user_pwd,dept_name from users u left join depts d on u.dept_id = d.dept_id
+ 	</select>
+	
+</mapper>

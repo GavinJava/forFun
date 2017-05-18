@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.lav.ssm.mapper.DeptMapper">
+
+	<select id="getAllDepts" resultMap="deptResultMap">
+		select dept_id,dept_name from depts
+	</select>
+	<resultMap type="cn.lav.ssm.pojo.Dept" id="deptResultMap">
+		<id property="deptId" column="dept_id"/>
+		<result property="deptName" column="dept_name"/>
+	</resultMap>
+	
+</mapper>
