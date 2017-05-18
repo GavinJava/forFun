@@ -1,4 +1,9 @@
 package cn.lav.ssm.pojo;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
 /**
  * 阳阳童鞋，你没有写包名
  * 
@@ -13,5 +18,9 @@ package cn.lav.ssm.pojo;
  *
  */
 public class hello {
-
+	
+	@Test
+	public void testSayHello() throws Exception {
+		System.out.println("hello Git...");
+	}
 }
