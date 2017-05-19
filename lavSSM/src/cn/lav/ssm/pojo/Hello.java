@@ -15,5 +15,6 @@ public class Hello {
 		System.out.println("hello Git...");
 		System.out.println("Git下载好慢---byWang:commit and push");
 		System.out.println("commit");
+		System.out.println("com");
 	}
 }
