@@ -19,5 +19,7 @@ public class Hello {
 		System.out.println("com");
 		System.out.println("com");
 		System.out.println("com");
+		System.out.println("com");
+		System.out.println("原来是吧帐号搞错了");
 	}
 }
