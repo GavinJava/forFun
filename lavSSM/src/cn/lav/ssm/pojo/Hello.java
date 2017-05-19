@@ -16,10 +16,6 @@ public class Hello {
 		System.out.println("Git下载好慢---byWang:commit and push");
 		System.out.println("commit");
 		System.out.println("com");
-		System.out.println("com");
-		System.out.println("com");
-		System.out.println("com");
-		System.out.println("com");
 		System.out.println("原来是吧帐号搞错了");
 	}
 }
